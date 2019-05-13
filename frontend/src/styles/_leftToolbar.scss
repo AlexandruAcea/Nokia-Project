@@ -1,0 +1,68 @@
+.toolBar {
+  width: 242px;
+  background: #323443;
+
+  .logo {
+    display: flex;
+    padding-top: 15px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    #stema {
+      height: 2rem;
+    }
+
+    h2 {
+      color: white;
+      font-size: 18px;
+      margin-left: 20px;
+    }
+  }
+
+  ul {
+    margin-top: 3rem;
+    list-style-type: none;
+    height: 400px;
+    padding-left: 0px;
+
+    li {
+      color: white;
+
+      :hover {
+        background: #383946;
+        transition: 0.3s;
+      }
+
+      .listItem {
+        display: flex;
+        align-items: center;
+        height: 50px;
+
+        p {
+          transition: background 0.3s;
+          padding-left: 35px;
+          margin: 0;
+          align-self: center;
+          align-items: center;
+        }
+      }
+
+      .listItemSelected {
+        display: flex;
+        align-items: center;
+        border-left: 4px solid #6465e1;
+        height: 50px;
+        background: #383946;
+
+        p {
+          transition: 0.3s;
+          padding-left: 31px;
+          margin: 0;
+          align-self: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

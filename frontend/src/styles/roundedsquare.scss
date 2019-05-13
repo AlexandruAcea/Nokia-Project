@@ -1,0 +1,23 @@
+.roundedSquareBody {
+  height: 15rem;
+  width: 10rem;
+  background: #373845;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  transition: 0.3s;
+  margin-top: 30px;
+
+  h1 {
+    font-size: 15px;
+    color: white;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.roundedSquareBody:hover {
+  background: #494b5b;
+  transition: 0.3s;
+}

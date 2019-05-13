@@ -1,0 +1,88 @@
+#viewVote {
+  height: 80%;
+  width: 60%;
+  overflow: auto;
+
+  #buttons2 {
+    bottom: 210px;
+  }
+
+  .buttonWrapper {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+
+    .buttonDeleteBoi {
+      background: #e74c3c;
+      height: 100%;
+      width: 100%;
+      max-width: 1040px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 40px;
+      margin-right: 40px;
+      border-radius: 10px;
+
+      p {
+        margin: 0;
+        color: white;
+      }
+    }
+
+    .buttonDeleteBoi:hover {
+      background: #c0392b;
+      transition: 0.3s;
+    }
+  }
+}
+
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  ul {
+    margin-top: 20px;
+
+    li {
+      display: flex;
+      align-items: center;
+
+      #p {
+        margin: 0;
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
+.miniWrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  #miniModalUl {
+    margin-top: 30px;
+    li {
+      margin-top: 15px;
+      display: block;
+
+      p {
+        font-size: 20px;
+      }
+      h2 {
+        margin-top: 20px;
+      }
+    }
+  }
+}

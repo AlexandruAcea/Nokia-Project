@@ -1,0 +1,21 @@
+@import "./leftToolbar";
+@import "./mainContent";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  width: 100%;
+  display: flex;
+  position: relative;
+
+  .line {
+    height: 2px;
+    width: 100%;
+    background: #383946;
+    position: absolute;
+    top: 65px;
+  }
+}

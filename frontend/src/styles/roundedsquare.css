@@ -1,0 +1,32 @@
+.roundedSquareBody {
+  height: 15rem;
+  width: 10rem;
+  background: #373845;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 15px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  margin-top: 30px;
+}
+
+.roundedSquareBody h1 {
+  font-size: 15px;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+.roundedSquareBody:hover {
+  background: #494b5b;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+/*# sourceMappingURL=roundedsquare.css.map */

@@ -1,0 +1,389 @@
+#viewVote {
+  height: 80%;
+  width: 60%;
+  overflow: auto;
+}
+
+#viewVote #buttons2 {
+  bottom: 210px;
+}
+
+#viewVote .buttonWrapper {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  margin-bottom: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#viewVote .buttonWrapper .buttonDeleteBoi {
+  background: #e74c3c;
+  height: 100%;
+  width: 100%;
+  max-width: 1040px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 40px;
+  margin-right: 40px;
+  border-radius: 10px;
+}
+
+#viewVote .buttonWrapper .buttonDeleteBoi p {
+  margin: 0;
+  color: white;
+}
+
+#viewVote .buttonWrapper .buttonDeleteBoi:hover {
+  background: #c0392b;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.wrap {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.wrap ul {
+  margin-top: 20px;
+}
+
+.wrap ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrap ul li #p {
+  margin: 0;
+  margin-left: 20px;
+}
+
+.miniWrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.miniWrapper #miniModalUl {
+  margin-top: 30px;
+}
+
+.miniWrapper #miniModalUl li {
+  margin-top: 15px;
+  display: block;
+}
+
+.miniWrapper #miniModalUl li p {
+  font-size: 20px;
+}
+
+.miniWrapper #miniModalUl li h2 {
+  margin-top: 20px;
+}
+
+.modalBody {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.modalBody .background {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modalBody .inside {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0;
+}
+
+.modalBody .inside .modal {
+  position: relative;
+  height: 40rem;
+  width: 37rem;
+  background: #373845;
+  border-radius: 15px;
+  -webkit-box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.27);
+          box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.27);
+}
+
+.modalBody .inside .modal #closeIcon {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
+.modalBody .inside .modal h1 {
+  color: white;
+  font-size: 20px;
+  margin-left: 40px;
+  margin-top: 40px;
+}
+
+.modalBody .inside .modal p {
+  margin-left: 40px;
+  margin-top: 5px;
+}
+
+.modalBody .inside .modal input {
+  margin-left: 40px;
+  margin-top: 10px;
+  height: 40px;
+  width: 67%;
+  border-radius: 5px;
+  border: 0;
+  background: #2f303d;
+  color: white;
+  padding-left: 10px;
+}
+
+.modalBody .inside .modal input:focus,
+.modalBody .inside .modal select:focus,
+.modalBody .inside .modal textarea:focus,
+.modalBody .inside .modal button:focus {
+  outline: none;
+}
+
+.modalBody .inside .modal h2 {
+  margin-left: 40px;
+  font-size: 18px;
+}
+
+.modalBody .inside .modal #numeRefTitle {
+  margin-top: 3rem;
+}
+
+.modalBody .inside .modal #dataStartRef {
+  margin-top: 30px;
+}
+
+.modalBody .inside .modal #nrVoturi {
+  margin-top: 30px;
+}
+
+.modalBody .inside .modal .votes {
+  margin-top: 10px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 40px;
+}
+
+.modalBody .inside .modal .votes p {
+  margin: 0;
+  font-size: 25px;
+}
+
+.modalBody .inside .modal .votes h1 {
+  margin: 0;
+  margin-left: 10px;
+  margin-right: 70px;
+  font-size: 25px;
+}
+
+.modalBody .inside .modal .buttons {
+  height: 20px;
+  width: 100%;
+  position: absolute;
+  bottom: 140px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalBody .inside .modal .buttons p {
+  margin: 0;
+  color: white;
+}
+
+.modalBody .inside .modal .buttons .startVot {
+  border-radius: 10px;
+  height: 50px;
+  width: 512px;
+  background: #656671;
+  margin-left: 40px;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalBody .inside .modal .buttons .stopVot {
+  border-radius: 10px;
+  height: 50px;
+  width: 512px;
+  background: #656671;
+  margin-right: 40px;
+  margin-left: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalBody .inside .modal .buttonSave {
+  position: absolute;
+  bottom: 0;
+  margin-left: 40px;
+  background: #2ecc71;
+  border-radius: 10px;
+  height: 50px;
+  width: 512px;
+  margin-bottom: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.modalBody .inside .modal .buttonSave p {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.modalBody .inside .modal .buttonSave:hover {
+  background: #27ae60;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.modalBody .inside .modal #buttonDelete {
+  background: #e74c3c;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.modalBody .inside .modal #buttonDelete:hover {
+  background: #c0392b;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.buttonAddPartid {
+  position: absolute;
+  bottom: 0;
+  margin-left: 40px;
+  background: #2ecc71;
+  border-radius: 10px;
+  height: 50px;
+  width: 512px;
+  margin-bottom: 110px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.buttonAddPartid #pNew {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.buttonAddPartid:hover {
+  background: #27ae60;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#specialUl {
+  margin-top: 10px;
+}
+
+#specialUl li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#specialUl li #p {
+  margin: 0;
+  margin-left: 20px;
+}
+/*# sourceMappingURL=modal.css.map */

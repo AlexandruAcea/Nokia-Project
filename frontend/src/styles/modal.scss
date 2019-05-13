@@ -1,0 +1,223 @@
+@import "./modalVote";
+
+.modalBody {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  .background {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .inside {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    .modal {
+      position: relative;
+      height: 40rem;
+      width: 37rem;
+      background: #373845;
+      border-radius: 15px;
+      box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.27);
+
+      #closeIcon {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+      }
+
+      h1 {
+        color: white;
+        font-size: 20px;
+        margin-left: 40px;
+        margin-top: 40px;
+      }
+
+      p {
+        margin-left: 40px;
+        margin-top: 5px;
+      }
+
+      input {
+        margin-left: 40px;
+        margin-top: 10px;
+        height: 40px;
+        width: 67%;
+        border-radius: 5px;
+        border: 0;
+        background: #2f303d;
+        color: white;
+        padding-left: 10px;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus,
+      button:focus {
+        outline: none;
+      }
+
+      h2 {
+        margin-left: 40px;
+        font-size: 18px;
+      }
+
+      #numeRefTitle {
+        margin-top: 3rem;
+      }
+
+      #dataStartRef {
+        margin-top: 30px;
+      }
+
+      #nrVoturi {
+        margin-top: 30px;
+      }
+
+      .votes {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-left: 40px;
+
+        p {
+          margin: 0;
+          font-size: 25px;
+        }
+        h1 {
+          margin: 0;
+          margin-left: 10px;
+          margin-right: 70px;
+          font-size: 25px;
+        }
+      }
+
+      .buttons {
+        height: 20px;
+        width: 100%;
+        position: absolute;
+        bottom: 140px;
+        display: flex;
+        justify-content: center;
+
+        p {
+          margin: 0;
+          color: white;
+        }
+
+        .startVot {
+          border-radius: 10px;
+          height: 50px;
+          width: 512px;
+          background: #656671;
+          margin-left: 40px;
+          margin-right: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .stopVot {
+          border-radius: 10px;
+          height: 50px;
+          width: 512px;
+          background: #656671;
+          margin-right: 40px;
+          margin-left: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      .buttonSave {
+        position: absolute;
+        bottom: 0;
+        margin-left: 40px;
+        background: #2ecc71;
+        border-radius: 10px;
+        height: 50px;
+        width: 512px;
+        margin-bottom: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s;
+
+        p {
+          margin: 0;
+          padding: 0;
+          color: white;
+        }
+      }
+
+      .buttonSave:hover {
+        background: #27ae60;
+        transition: 0.3s;
+      }
+
+      #buttonDelete {
+        background: #e74c3c;
+        transition: 0.3s;
+      }
+
+      #buttonDelete:hover {
+        background: #c0392b;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+
+.buttonAddPartid {
+  position: absolute;
+  bottom: 0;
+  margin-left: 40px;
+  background: #2ecc71;
+  border-radius: 10px;
+  height: 50px;
+  width: 512px;
+  margin-bottom: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+
+  #pNew {
+    margin: 0;
+    padding: 0;
+    color: white;
+  }
+}
+
+.buttonAddPartid:hover {
+  background: #27ae60;
+  transition: 0.3s;
+}
+
+#specialUl {
+  margin-top: 10px;
+
+  li {
+    display: flex;
+    align-items: center;
+
+    #p {
+      margin: 0;
+      margin-left: 20px;
+    }
+  }
+}
