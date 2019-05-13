@@ -21,14 +21,8 @@ exports.product_create = function(req, res, next) {
 };
 
 exports.showAllUsers = function(req, res) {
-  Product.find({}, function(err, users) {
-    var userMap = {};
-
-    users.forEach(function(user) {
-      userMap[user._id] = user;
-    });
-
-    res.send(userMap);
+  Product.find({}).then(function(partide) {
+    res.send(partide);
   });
 };
 
