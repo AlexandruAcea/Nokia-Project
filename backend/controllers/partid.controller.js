@@ -24,9 +24,24 @@ exports.showAllPartide = function(req, res) {
 };
 
 exports.deletePartid = function(req, res, next) {
-  Partid.findByIdAndRemove(req.params.id, function(err) {
+  Partid.findById(req.params.id, function(err, partid) {
     if (err) return next(err);
-    res.send("Partid sters cu success!");
+    partid.membrii.forEach(function(entry) {
+      console.log(entry.partid._id);
+
+      Candidat.findByIdAndUpdate(
+        entry._id,
+        { $set: { partid: { _id: "" } } },
+        function(err) {
+          if (err) return next(err);
+        }
+      );
+    });
+
+    Partid.findByIdAndRemove(req.params.id, function(err) {
+      if (err) return next(err);
+      res.send("Partid sters cu success!");
+    });
   });
 };
 

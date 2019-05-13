@@ -1,28 +1,36 @@
 import React, { Component } from "react";
 import RoundedSquare from "../common/RoundedSquare";
-import Modal from "../common/modals/ModalNewRef";
-import ModalViewRef from "../common/modals/ModelViewRef";
-import ModalNewVote from "../common/modals/ModalNewVote";
-import ModalViewVote from "../common/modals/ModalViewVote";
+import ModalNewCandidat from "../common/modals/ModalNewCandidat";
 import addIcon from "../../assets/add.png";
 import axios from "axios";
 
 class candidati extends Component {
   state = {
     listaCandidati: [],
-    dataLoaded: false
+    dataLoaded: false,
+
+    modalNewCandidat: false
   };
 
   componentDidMount() {
     this.fetchData();
   }
 
-  fetchData() {
+  fetchData = () => {
     axios
       .get("http://localhost:1234/candidat/listaCandidati")
       .then(res =>
         this.setState({ listaCandidati: res.data, dataLoaded: true })
       );
+  };
+
+  deleteCandidat(id) {
+    axios
+      .delete(`http://localhost:1234/candidat/${id}/delete`)
+      .then(res =>
+        this.setState({ listaCandidati: res.data, dataLoaded: true })
+      )
+      .then(this.fetchData());
   }
 
   showData() {
@@ -31,15 +39,22 @@ class candidati extends Component {
     if (dataLoaded) {
       return listaCandidati.map((item, key) => {
         return (
-          <li
-            key={key}
-            //onClick={() => this.setState({ modalViewVote: true, object: item })}
-          >
+          <li key={key} onClick={() => this.deleteCandidat(item._id)}>
             <RoundedSquare nume={item.nume + " " + item.prenume} />
           </li>
         );
       });
     }
+  }
+
+  renderNewCandidat() {
+    if (this.state.modalNewCandidat)
+      return (
+        <ModalNewCandidat
+          closeModal={() => this.setState({ modalNewCandidat: false })}
+          reloadData={this.fetchData}
+        />
+      );
   }
 
   render() {
@@ -53,12 +68,13 @@ class candidati extends Component {
           <li>
             <div
               className="newItem"
-              onClick={() => this.setState({ modalNewVoteVisible: true })}
+              onClick={() => this.setState({ modalNewCandidat: true })}
             >
               <img src={addIcon} alt="plus symbol" />
             </div>
           </li>
         </ul>
+        {this.renderNewCandidat()}
       </div>
     );
   }
