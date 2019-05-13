@@ -30,7 +30,9 @@ class users extends Component {
       return listaPartide.map((item, key) => {
         return (
           <li key={key}>
-            <p>Yolo</p>
+            <h3 style={{ marginTop: "20px", color: "white" }}>
+              {key + 1}. {item.nume} {item.prenume}
+            </h3>
           </li>
         );
       });

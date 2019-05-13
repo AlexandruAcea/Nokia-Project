@@ -7,7 +7,8 @@ exports.create_vote = function(req, res, next) {
     nume: req.body.nume,
     data_start: req.body.data_start,
     descriere: req.body.descriere,
-    candidati: []
+    candidati: [],
+    votanti: []
   });
 
   product.save(function(err) {
@@ -117,6 +118,9 @@ exports.voteaza = function(req, res) {
     if (err) return next(err);
 
     var results = campanie.results;
+    var votanti = campanie.votanti;
+
+    votanti.push(req.body.id_votant);
 
     if (campanie.candidati.indexOf(req.body.id_candidat) !== -1) {
       results.forEach(function(entry) {
@@ -126,7 +130,7 @@ exports.voteaza = function(req, res) {
 
       VotMultiplu.findByIdAndUpdate(
         req.params.id,
-        { $set: { results: results } },
+        { $set: { results: results, votanti: votanti } },
         function(err) {
           if (err) return next(err);
           res.send("Candidat votat cu succes! :3");
