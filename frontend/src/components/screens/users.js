@@ -33,6 +33,7 @@ class users extends Component {
             <h3 style={{ marginTop: "20px", color: "white" }}>
               {key + 1}. {item.nume} {item.prenume}
             </h3>
+            <p style={{ marginTop: "0px", marginLeft: "20px" }}>{item._id}</p>
           </li>
         );
       });
