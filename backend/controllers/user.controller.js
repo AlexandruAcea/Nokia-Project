@@ -9,6 +9,7 @@ exports.product_create = function(req, res, next) {
     nume: req.body.nume,
     prenume: req.body.prenume,
     adresa: req.body.adresa,
+    parola: req.body.parola,
     cnp: req.body.cnp
   });
 
@@ -23,6 +24,14 @@ exports.product_create = function(req, res, next) {
 exports.showAllUsers = function(req, res) {
   Product.find({}).then(function(partide) {
     res.send(partide);
+  });
+};
+
+exports.login = function(req, res, next) {
+  const { cnp, parola } = req.body;
+  Product.findOne({ cnp }).then(function(user) {
+    if (parola === user.parola) res.send({ message: "LOGGED IN", user });
+    else res.send({ message: "ERROR, BIG OOF" });
   });
 };
 

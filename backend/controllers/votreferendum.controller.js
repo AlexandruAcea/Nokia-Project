@@ -4,7 +4,9 @@ exports.referendumCreate = function(req, res, next) {
   var product = new VotReferendum({
     nume: req.body.nume,
     data_start: req.body.data_start,
-    descriere: req.body.descriere
+    descriere: req.body.descriere,
+    votanti: [],
+    votStatus: "none"
   });
 
   product.save(function(err) {
@@ -21,12 +23,38 @@ exports.showAllReferendums = function(req, res) {
   });
 };
 
+exports.startVot = function(req, res, next) {
+  VotReferendum.findByIdAndUpdate(
+    req.params.id,
+    { $set: { votStatus: "ongoing" } },
+    function(err) {
+      if (err) return next(err);
+      res.send("Votul a inceput!");
+    }
+  );
+};
+
+exports.stopVot = function(req, res, next) {
+  VotReferendum.findByIdAndUpdate(
+    req.params.id,
+    { $set: { votStatus: "stopped" } },
+    function(err) {
+      if (err) return next(err);
+      res.send("Votul a fost oprit!");
+    }
+  );
+};
+
 exports.votYES = function(req, res, next) {
   VotReferendum.findById(req.params.id, function(err, product) {
     if (err) return next(err);
+
+    var votanti = campanie.product;
+    votanti.push(req.body.id_votant);
+
     VotReferendum.findByIdAndUpdate(
       req.params.id,
-      { $set: { voturi_da: ++product.voturi_da } },
+      { $set: { voturi_da: ++product.voturi_da, votanti: votanti } },
       function(err, product) {
         if (err) return next(err);
         res.send("Product udpated.");
@@ -38,9 +66,13 @@ exports.votYES = function(req, res, next) {
 exports.votNO = function(req, res, next) {
   VotReferendum.findById(req.params.id, function(err, product) {
     if (err) return next(err);
+
+    var votanti = campanie.product;
+    votanti.push(req.body.id_votant);
+
     VotReferendum.findByIdAndUpdate(
       req.params.id,
-      { $set: { voturi_nu: ++product.voturi_nu } },
+      { $set: { voturi_nu: ++product.voturi_nu, votanti: votanti } },
       function(err, product) {
         if (err) return next(err);
         res.send("Product udpated.");

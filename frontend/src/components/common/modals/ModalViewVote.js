@@ -25,6 +25,22 @@ class Modal extends Component {
       .then(this.props.reloadData);
   };
 
+  startVot = () => {
+    axios
+      .post(`http://localhost:1234/vot/${this.props._id}/start`)
+      .then(function(response) {
+        //this.setState({ votStatus: "ongoing" });
+      });
+  };
+
+  stopVot = () => {
+    axios
+      .post(`http://localhost:1234/vot/${this.props._id}/stop`)
+      .then(function(response) {
+        //this.setState({ votStatus: "stopped" });
+      });
+  };
+
   fetchListaPartide() {
     axios
       .all([
@@ -91,6 +107,16 @@ class Modal extends Component {
 
             <h2 id="dataStartRef">ID Database - for debug</h2>
             <p>{this.props._id}</p>
+
+            <h2 id="dataStartRef">Status</h2>
+            <p
+              style={{
+                color: this.props.votStatus === "ongoing" ? "green" : "red",
+                textTransform: "uppercase"
+              }}
+            >
+              {this.props.votStatus}
+            </p>
 
             <div className="wrap">
               <div className="candidatiSide">
@@ -159,10 +185,10 @@ class Modal extends Component {
             </div>
 
             <div className="buttons">
-              <div className="startVot">
+              <div className="startVot" onClick={this.startVot}>
                 <p>Start Vot</p>
               </div>
-              <div className="stopVot">
+              <div className="stopVot" onClick={this.stopVot}>
                 <p>Stop Vot</p>
               </div>
             </div>

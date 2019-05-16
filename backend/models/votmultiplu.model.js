@@ -6,7 +6,9 @@ let VotMultiplu = new Schema({
   data_start: { type: String, required: true },
   descriere: { type: String, required: true },
   candidati: [{ type: Object }],
-  results: [{ type: Object }]
+  results: [{ type: Object }],
+  votanti: [{ type: String }],
+  votStatus: { type: String }
 });
 
 module.exports = mongoose.model("VotMultiplu", VotMultiplu);

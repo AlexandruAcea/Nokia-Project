@@ -20,6 +20,8 @@ router.patch("/:id/update", product_controller.product_update);
 
 router.delete("/:id/delete", product_controller.product_delete);
 
+router.post("/login", product_controller.login);
+
 //For PARTID //------------------------------------------------------
 router.get("/partid/listaPartide", partid_controller.showAllPartide);
 
@@ -53,6 +55,10 @@ router.post("/referendum/:id/votYES", referendum_controller.votYES);
 
 router.post("/referendum/:id/votNO", referendum_controller.votNO);
 
+router.post("/referendum/:id/start", referendum_controller.startVot);
+
+router.post("/referendum/:id/stop", referendum_controller.stopVot);
+
 router.delete("/referendum/:id/delete", referendum_controller.delete);
 
 //For VOT MULTIPLU //----------------------------------------------
@@ -66,6 +72,10 @@ router.post("/vot/:id/addCandidat", votmultiplu_controller.addCandidat);
 router.post("/vot/:id/addPartid", votmultiplu_controller.addPartid);
 
 router.post("/vot/:id/voteaza", votmultiplu_controller.voteaza);
+
+router.post("/vot/:id/start", votmultiplu_controller.startVot);
+
+router.post("/vot/:id/stop", votmultiplu_controller.stopVot);
 
 router.delete("/vot/:id/delete", votmultiplu_controller.deleteVotMultiplu);
 

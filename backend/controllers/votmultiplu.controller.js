@@ -8,7 +8,8 @@ exports.create_vote = function(req, res, next) {
     data_start: req.body.data_start,
     descriere: req.body.descriere,
     candidati: [],
-    votanti: []
+    votanti: [],
+    votStatus: "none"
   });
 
   product.save(function(err) {
@@ -23,6 +24,28 @@ exports.showAllVotes = function(req, res) {
   VotMultiplu.find({}).then(function(referendumuri) {
     res.send(referendumuri);
   });
+};
+
+exports.startVot = function(req, res, next) {
+  VotMultiplu.findByIdAndUpdate(
+    req.params.id,
+    { $set: { votStatus: "ongoing" } },
+    function(err) {
+      if (err) return next(err);
+      res.send("Votul a inceput!");
+    }
+  );
+};
+
+exports.stopVot = function(req, res, next) {
+  VotMultiplu.findByIdAndUpdate(
+    req.params.id,
+    { $set: { votStatus: "stopped" } },
+    function(err) {
+      if (err) return next(err);
+      res.send("Votul a fost oprit!");
+    }
+  );
 };
 
 exports.addCandidat = function(req, res, next) {
@@ -122,7 +145,15 @@ exports.voteaza = function(req, res) {
 
     votanti.push(req.body.id_votant);
 
-    if (campanie.candidati.indexOf(req.body.id_candidat) !== -1) {
+    var check = false;
+
+    campanie.candidati.forEach(function(entry) {
+      console.log(entry.candidat._id);
+      console.log(req.body.id_candidat + "+++");
+      if (entry.candidat._id == req.body.id_candidat) check = true;
+    });
+
+    if (check) {
       results.forEach(function(entry) {
         if (entry.candidatID === req.body.id_candidat)
           entry.voturi = entry.voturi + 1;

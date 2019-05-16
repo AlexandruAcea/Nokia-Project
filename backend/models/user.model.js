@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 let UserSchema = new Schema({
   nume: { type: String, required: true, max: 100 },
   prenume: { type: String, required: true, max: 100 },
+  parola: { type: String, required: true },
   adresa: { type: String, required: true, max: 100 },
   cnp: { type: Number, required: true }
 });

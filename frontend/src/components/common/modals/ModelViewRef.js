@@ -16,6 +16,22 @@ class Modal extends Component {
       .then(this.props.reloadData);
   };
 
+  startVot = () => {
+    axios
+      .post(`http://localhost:1234/referendum/${this.props._id}/start`)
+      .then(function(response) {
+        console.log("Vote has started");
+      });
+  };
+
+  stopVot = () => {
+    axios
+      .post(`http://localhost:1234/referendum/${this.props._id}/stop`)
+      .then(function(response) {
+        console.log("Vote has started");
+      });
+  };
+
   render() {
     return (
       <div className="modalBody">
@@ -37,6 +53,9 @@ class Modal extends Component {
             <h2 id="dataStartRef">ID Database - for debug</h2>
             <p>{this.props._id}</p>
 
+            <h2 id="dataStartRef">Status</h2>
+            <p>{this.props.votStatus}</p>
+
             <h2 id="nrVoturi">Numar Voturi</h2>
             <div className="votes">
               <p>DA</p>
@@ -46,10 +65,10 @@ class Modal extends Component {
             </div>
 
             <div className="buttons">
-              <div className="startVot">
+              <div className="startVot" onClick={this.startVot}>
                 <p>Start Vot</p>
               </div>
-              <div className="stopVot">
+              <div className="stopVot" onClick={this.stopVot}>
                 <p>Stop Vot</p>
               </div>
             </div>
