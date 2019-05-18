@@ -5,7 +5,7 @@ import "../../../styles/modal.css";
 import { URL } from "../../../types";
 
 class Modal extends Component {
-  state = {};
+  state = { votStatus: this.props.votStatus };
 
   deleteReferendum = () => {
     axios
@@ -18,19 +18,15 @@ class Modal extends Component {
   };
 
   startVot = () => {
-    axios
-      .post(`http://${URL}/referendum/${this.props._id}/start`)
-      .then(function(response) {
-        console.log("Vote has started");
-      });
+    axios.post(`http://${URL}/referendum/${this.props._id}/start`).then(() => {
+      this.setState({ votStatus: "ongoing" });
+    });
   };
 
   stopVot = () => {
-    axios
-      .post(`http://${URL}/referendum/${this.props._id}/stop`)
-      .then(function(response) {
-        console.log("Vote has started");
-      });
+    axios.post(`http://${URL}/referendum/${this.props._id}/stop`).then(() => {
+      this.setState({ votStatus: "stopped" });
+    });
   };
 
   render() {
@@ -55,7 +51,14 @@ class Modal extends Component {
             <p>{this.props._id}</p>
 
             <h2 id="dataStartRef">Status</h2>
-            <p>{this.props.votStatus}</p>
+            <p
+              style={{
+                color: this.state.votStatus === "ongoing" ? "green" : "red",
+                textTransform: "uppercase"
+              }}
+            >
+              {this.state.votStatus}
+            </p>
 
             <h2 id="nrVoturi">Numar Voturi</h2>
             <div className="votes">

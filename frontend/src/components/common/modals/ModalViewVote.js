@@ -13,7 +13,9 @@ class Modal extends Component {
     dataFetched: false,
 
     miniModalShow: false,
-    miniModalShowPartide: false
+    miniModalShowPartide: false,
+
+    votStatus: this.props.votStatus
   };
 
   deleteReferendum = () => {
@@ -27,19 +29,15 @@ class Modal extends Component {
   };
 
   startVot = () => {
-    axios
-      .post(`http://${URL}/vot/${this.props._id}/start`)
-      .then(function(response) {
-        //this.setState({ votStatus: "ongoing" });
-      });
+    axios.post(`http://${URL}/vot/${this.props._id}/start`).then(() => {
+      this.setState({ votStatus: "ongoing" });
+    });
   };
 
   stopVot = () => {
-    axios
-      .post(`http://${URL}/vot/${this.props._id}/stop`)
-      .then(function(response) {
-        //this.setState({ votStatus: "stopped" });
-      });
+    axios.post(`http://${URL}/vot/${this.props._id}/stop`).then(() => {
+      this.setState({ votStatus: "stopped" });
+    });
   };
 
   fetchListaPartide() {
@@ -112,11 +110,11 @@ class Modal extends Component {
             <h2 id="dataStartRef">Status</h2>
             <p
               style={{
-                color: this.props.votStatus === "ongoing" ? "green" : "red",
+                color: this.state.votStatus === "ongoing" ? "green" : "red",
                 textTransform: "uppercase"
               }}
             >
-              {this.props.votStatus}
+              {this.state.votStatus}
             </p>
 
             <div className="wrap">

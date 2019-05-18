@@ -49,7 +49,7 @@ exports.votYES = function(req, res, next) {
   VotReferendum.findById(req.params.id, function(err, product) {
     if (err) return next(err);
 
-    var votanti = campanie.product;
+    var votanti = product.votanti;
     votanti.push(req.body.id_votant);
 
     VotReferendum.findByIdAndUpdate(
@@ -67,7 +67,7 @@ exports.votNO = function(req, res, next) {
   VotReferendum.findById(req.params.id, function(err, product) {
     if (err) return next(err);
 
-    var votanti = campanie.product;
+    var votanti = product.votanti;
     votanti.push(req.body.id_votant);
 
     VotReferendum.findByIdAndUpdate(

@@ -5,6 +5,7 @@ import LoginScreen from "./src/LoginScreen";
 import HomeScreen from "./src/HomeScreen";
 import VotOnBoarding from "./src/VotOnBoarding";
 import VotScreen from "./src/VotingScreen";
+import RefScreen from "./src/ReferendumScreen";
 
 const MainNavigator = createStackNavigator({
   Login: {
@@ -29,6 +30,13 @@ const MainNavigator = createStackNavigator({
   },
   VotScreen: {
     screen: VotScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+
+  RefScreen: {
+    screen: RefScreen,
     navigationOptions: {
       header: null
     }

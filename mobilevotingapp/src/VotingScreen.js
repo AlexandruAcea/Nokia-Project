@@ -18,6 +18,8 @@ class VotingScreen extends Component {
   vote() {
     var newEntry = {};
 
+    const { navigate } = this.props.navigation;
+
     this.state.list.forEach(function(entry) {
       if (entry.selected === true) newEntry = entry;
     });
@@ -33,7 +35,7 @@ class VotingScreen extends Component {
         id_votant: this.props.navigation.state.params.idUser
       }
     }).then(res => {
-      console.log(res.data);
+      navigate("Home");
     });
   }
 
@@ -84,9 +86,6 @@ class VotingScreen extends Component {
   }
 
   render() {
-    const { params } = this.props.navigation.state;
-    const { candidati } = this.props.navigation.state.params;
-
     return (
       <View
         style={{

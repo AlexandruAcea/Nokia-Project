@@ -95,10 +95,15 @@ class VotOnBoarding extends Component {
 
         <TouchableOpacity
           onPress={() =>
-            navigate("VotScreen", {
-              ...params,
-              idUser: this.props.navigation.state.params.idUser
-            })
+            this.props.navigation.state.params.isReferendum
+              ? navigate("RefScreen", {
+                  ...params,
+                  idUser: this.props.navigation.state.params.idUser
+                })
+              : navigate("VotScreen", {
+                  ...params,
+                  idUser: this.props.navigation.state.params.idUser
+                })
           }
           activeOpacity={0.7}
           style={{

@@ -7,6 +7,7 @@ let VotReferendumSchema = new Schema({
   descriere: { type: String, required: true },
   voturi_da: { type: Number, required: true, default: 0 },
   voturi_nu: { type: Number, required: true, default: 0 },
+  votanti: [{ type: String }],
   votStatus: { type: String }
 });
 
