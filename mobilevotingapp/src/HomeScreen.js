@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import axios from "axios";
 import PullToRefresh from "react-native-pull-to-refresh";
+import { URL } from "./types";
 
 class HomeScreen extends Component {
   state = {
@@ -19,8 +20,8 @@ class HomeScreen extends Component {
   fetchData = () => {
     axios
       .all([
-        axios.get("http://192.168.1.28:1234/vot/votlist"),
-        axios.get("http://192.168.1.28:1234/referendum/referendumList")
+        axios.get(`http://${URL}/vot/votlist`),
+        axios.get(`http://${URL}/referendum/referendumList`)
       ])
       .then(
         axios.spread((res1, res2) => {

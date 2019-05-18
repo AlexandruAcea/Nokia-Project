@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import axios from "axios";
 import close from "../../../assets/close.png";
 import "../../../styles/modal.css";
+import { URL } from "../../../types";
 
 class Modal extends Component {
   state = {};
 
   deleteReferendum = () => {
     axios
-      .delete(`http://localhost:1234/referendum/${this.props._id}/delete`)
+      .delete(`http://${URL}/referendum/${this.props._id}/delete`)
       .then(response => {
         console.log("YAS YOU DELETED IT!");
       })
@@ -18,7 +19,7 @@ class Modal extends Component {
 
   startVot = () => {
     axios
-      .post(`http://localhost:1234/referendum/${this.props._id}/start`)
+      .post(`http://${URL}/referendum/${this.props._id}/start`)
       .then(function(response) {
         console.log("Vote has started");
       });
@@ -26,7 +27,7 @@ class Modal extends Component {
 
   stopVot = () => {
     axios
-      .post(`http://localhost:1234/referendum/${this.props._id}/stop`)
+      .post(`http://${URL}/referendum/${this.props._id}/stop`)
       .then(function(response) {
         console.log("Vote has started");
       });

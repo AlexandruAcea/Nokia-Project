@@ -3,6 +3,7 @@ import axios from "axios";
 import close from "../../../assets/close.png";
 import ModalCandidati from "./ModalAddCandidatiToPartid";
 import "../../../styles/modal.css";
+import { URL } from "../../../types";
 
 class Modal extends Component {
   state = {
@@ -13,7 +14,7 @@ class Modal extends Component {
 
   deletePartid = () => {
     axios
-      .delete(`http://localhost:1234/partid/${this.props._id}/delete`)
+      .delete(`http://${URL}/partid/${this.props._id}/delete`)
       .then(response => {
         console.log("YAS YOU DELETED IT!");
       })
@@ -22,16 +23,14 @@ class Modal extends Component {
   };
 
   fetchListaPartide() {
-    axios
-      .all([axios.get("http://localhost:1234/candidat/listaCandidati")])
-      .then(
-        axios.spread(res => {
-          this.setState({
-            listaCandidati: res.data,
-            dataFetched: true
-          });
-        })
-      );
+    axios.all([axios.get(`http://${URL}/candidat/listaCandidati`)]).then(
+      axios.spread(res => {
+        this.setState({
+          listaCandidati: res.data,
+          dataFetched: true
+        });
+      })
+    );
   }
 
   reload = () => {

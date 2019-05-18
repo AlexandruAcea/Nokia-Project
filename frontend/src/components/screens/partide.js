@@ -4,6 +4,7 @@ import ModalNewPartid from "../common/modals/ModalNewPartid";
 import ModalViewPartid from "../common/modals/ModalViewPartid";
 import addIcon from "../../assets/add.png";
 import axios from "axios";
+import { URL } from "../../types";
 
 class partide extends Component {
   state = {
@@ -22,7 +23,7 @@ class partide extends Component {
 
   fetchData = () => {
     axios
-      .get("http://localhost:1234/partid/listaPartide")
+      .get(`http://${URL}/partid/listaPartide`)
       .then(res => this.setState({ listaPartide: res.data, dataLoaded: true }));
   };
 

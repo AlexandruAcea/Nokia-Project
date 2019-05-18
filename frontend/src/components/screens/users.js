@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RoundedSquare from "../common/RoundedSquare";
 import axios from "axios";
+import { URL } from "../../types";
 
 class users extends Component {
   state = {
@@ -19,7 +20,7 @@ class users extends Component {
 
   fetchData = () => {
     axios
-      .get("http://localhost:1234/userList")
+      .get(`http://${URL}/userList`)
       .then(res => this.setState({ listaPartide: res.data, dataLoaded: true }));
   };
 

@@ -3,6 +3,7 @@ import RoundedSquare from "../common/RoundedSquare";
 import ModalNewCandidat from "../common/modals/ModalNewCandidat";
 import addIcon from "../../assets/add.png";
 import axios from "axios";
+import { URL } from "../../types";
 
 class candidati extends Component {
   state = {
@@ -18,7 +19,7 @@ class candidati extends Component {
 
   fetchData = () => {
     axios
-      .get("http://localhost:1234/candidat/listaCandidati")
+      .get(`http://${URL}/candidat/listaCandidati`)
       .then(res =>
         this.setState({ listaCandidati: res.data, dataLoaded: true })
       );
@@ -26,7 +27,7 @@ class candidati extends Component {
 
   deleteCandidat(id) {
     axios
-      .delete(`http://localhost:1234/candidat/${id}/delete`)
+      .delete(`http://${URL}/candidat/${id}/delete`)
       .then(res =>
         this.setState({ listaCandidati: res.data, dataLoaded: true })
       )
@@ -39,7 +40,9 @@ class candidati extends Component {
     if (dataLoaded) {
       return listaCandidati.map((item, key) => {
         return (
-          <li key={key} onClick={() => this.deleteCandidat(item._id)}>
+          <li
+            key={key} //onClick={() => this.deleteCandidat(item._id)}
+          >
             <RoundedSquare nume={item.nume + " " + item.prenume} />
           </li>
         );

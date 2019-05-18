@@ -4,6 +4,7 @@ import close from "../../../assets/close.png";
 import MiniModal from "./ModalAddCandidatiPartide";
 import MiniModalPartide from "./ModalAddPartide";
 import "../../../styles/modal.css";
+import { URL } from "../../../types";
 
 class Modal extends Component {
   state = {
@@ -17,7 +18,7 @@ class Modal extends Component {
 
   deleteReferendum = () => {
     axios
-      .delete(`http://localhost:1234/vot/${this.props._id}/delete`)
+      .delete(`http://${URL}/vot/${this.props._id}/delete`)
       .then(response => {
         console.log("YAS YOU DELETED IT!");
       })
@@ -27,7 +28,7 @@ class Modal extends Component {
 
   startVot = () => {
     axios
-      .post(`http://localhost:1234/vot/${this.props._id}/start`)
+      .post(`http://${URL}/vot/${this.props._id}/start`)
       .then(function(response) {
         //this.setState({ votStatus: "ongoing" });
       });
@@ -35,7 +36,7 @@ class Modal extends Component {
 
   stopVot = () => {
     axios
-      .post(`http://localhost:1234/vot/${this.props._id}/stop`)
+      .post(`http://${URL}/vot/${this.props._id}/stop`)
       .then(function(response) {
         //this.setState({ votStatus: "stopped" });
       });
@@ -44,8 +45,8 @@ class Modal extends Component {
   fetchListaPartide() {
     axios
       .all([
-        axios.get("http://localhost:1234/partid/listaPartide"),
-        axios.get("http://localhost:1234/candidat/listaCandidati")
+        axios.get(`http://${URL}/partid/listaPartide`),
+        axios.get(`http://${URL}/candidat/listaCandidati`)
       ])
       .then(
         axios.spread((res1, res2) => {

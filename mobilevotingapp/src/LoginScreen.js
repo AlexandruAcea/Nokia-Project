@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity
 } from "react-native";
+import { URL } from "./types";
 import axios from "axios";
 import stema from "./assets/stema.png";
 
@@ -18,7 +19,7 @@ export default class LoginScreen extends Component {
 
     axios({
       method: "post",
-      url: `http://192.168.1.28:1234/login`,
+      url: `http://${URL}/login`,
       headers: {},
       data: {
         cnp: this.state.value1,
@@ -28,6 +29,7 @@ export default class LoginScreen extends Component {
       //console.log(res.data.user._id);
       if (res.data.message === "LOGGED IN")
         navigate("Home", { idUser: res.data.user._id });
+      else console.log(res.data.message);
     });
   }
 

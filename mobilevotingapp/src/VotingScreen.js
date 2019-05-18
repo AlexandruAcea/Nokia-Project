@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
+import { URL } from "./types";
 import axios from "axios";
 
 class VotingScreen extends Component {
@@ -23,7 +24,7 @@ class VotingScreen extends Component {
 
     axios({
       method: "post",
-      url: `http://192.168.1.28:1234/vot/${
+      url: `http://${URL}/vot/${
         this.props.navigation.state.params._id
       }/voteaza`,
       headers: {},

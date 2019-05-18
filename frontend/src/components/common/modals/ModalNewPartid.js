@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import close from "../../../assets/close.png";
 import "../../../styles/modal.css";
+import { URL } from "../../../types";
 
 class Modal extends Component {
   state = { value1: "", value2: "", value3: "" };
@@ -24,7 +25,7 @@ class Modal extends Component {
     if (value1 !== "" && value2 !== "" && value3 !== "")
       axios({
         method: "post",
-        url: "http://localhost:1234/partid/createPartid",
+        url: `http://${URL}/partid/createPartid`,
         headers: {},
         data: {
           nume: value1,

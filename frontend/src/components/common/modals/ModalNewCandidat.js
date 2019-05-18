@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import close from "../../../assets/close.png";
 import "../../../styles/modal.css";
+import { URL } from "../../../types";
 
 class Modal extends Component {
   state = { value1: "", value2: "" };
@@ -20,7 +21,7 @@ class Modal extends Component {
     if (value1 !== "" && value2 !== "")
       axios({
         method: "post",
-        url: "http://localhost:1234/candidat/create",
+        url: `http://${URL}/candidat/create`,
         headers: {},
         data: {
           nume: value1,

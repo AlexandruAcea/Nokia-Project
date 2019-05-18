@@ -6,6 +6,7 @@ import ModalNewVote from "../common/modals/ModalNewVote";
 import ModalViewVote from "../common/modals/ModalViewVote";
 import addIcon from "../../assets/add.png";
 import axios from "axios";
+import { URL } from "../../types";
 
 class campanii extends Component {
   state = {
@@ -29,8 +30,8 @@ class campanii extends Component {
   fetchData = () => {
     axios
       .all([
-        axios.get("http://localhost:1234/vot/votlist"),
-        axios.get("http://localhost:1234/referendum/referendumList")
+        axios.get(`http://${URL}/vot/votlist`),
+        axios.get(`http://${URL}/referendum/referendumList`)
       ])
       .then(
         axios.spread((res1, res2) => {
