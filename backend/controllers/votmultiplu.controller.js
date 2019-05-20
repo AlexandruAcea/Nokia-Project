@@ -143,9 +143,6 @@ exports.voteaza = function(req, res) {
     var results = campanie.results;
     var votanti = campanie.votanti;
 
-    console.log(votanti);
-    console.log(String(req.body.id_votant));
-
     votanti.push(req.body.id_votant);
 
     var check = false;
