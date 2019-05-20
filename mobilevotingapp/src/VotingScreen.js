@@ -190,11 +190,10 @@ class VotingScreen extends Component {
 const styles = {
   selectedStyle: {
     backgroundColor: "green",
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 20,
+    marginRight: 20,
     marginBottom: 20,
-    borderRadius: 5,
-    justifyContent: "center"
+    borderRadius: 5
   },
 
   normalStyle: {

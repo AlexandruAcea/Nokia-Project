@@ -143,31 +143,33 @@ exports.voteaza = function(req, res) {
     var results = campanie.results;
     var votanti = campanie.votanti;
 
-    votanti.push(req.body.id_votant);
+    if (!votanti.indexOf(req.body.id_votant)) {
+      votanti.push(req.body.id_votant);
 
-    var check = false;
+      var check = false;
 
-    campanie.candidati.forEach(function(entry) {
-      console.log(entry.candidat._id);
-      console.log(req.body.id_candidat + "+++");
-      if (entry.candidat._id == req.body.id_candidat) check = true;
-    });
-
-    if (check) {
-      results.forEach(function(entry) {
-        if (entry.candidatID === req.body.id_candidat)
-          entry.voturi = entry.voturi + 1;
+      campanie.candidati.forEach(function(entry) {
+        console.log(entry.candidat._id);
+        console.log(req.body.id_candidat + "+++");
+        if (entry.candidat._id == req.body.id_candidat) check = true;
       });
 
-      VotMultiplu.findByIdAndUpdate(
-        req.params.id,
-        { $set: { results: results, votanti: votanti } },
-        function(err) {
-          if (err) return next(err);
-          res.send("Candidat votat cu succes! :3");
-        }
-      );
-    } else res.send("Nu exista acest candidat... :(");
+      if (check) {
+        results.forEach(function(entry) {
+          if (entry.candidatID === req.body.id_candidat)
+            entry.voturi = entry.voturi + 1;
+        });
+
+        VotMultiplu.findByIdAndUpdate(
+          req.params.id,
+          { $set: { results: results, votanti: votanti } },
+          function(err) {
+            if (err) return next(err);
+            res.send("Candidat votat cu succes! :3");
+          }
+        );
+      } else res.send("Nu exista acest candidat... :(");
+    } else res.send("A votat deja");
   });
 };
 
