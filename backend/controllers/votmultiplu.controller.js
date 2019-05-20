@@ -143,14 +143,13 @@ exports.voteaza = function(req, res) {
     var results = campanie.results;
     var votanti = campanie.votanti;
 
-    console.log(votanti.indexOf(req.body.id_votant));
+    console.log(votanti);
+
     votanti.push(req.body.id_votant);
 
     var check = false;
 
     campanie.candidati.forEach(function(entry) {
-      console.log(entry.candidat._id);
-      console.log(req.body.id_candidat + "+++");
       if (entry.candidat._id == req.body.id_candidat) check = true;
     });
 
