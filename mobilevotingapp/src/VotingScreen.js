@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { URL } from "./types";
 import axios from "axios";
 
@@ -53,35 +53,71 @@ class VotingScreen extends Component {
 
   renderCandidati() {
     return this.state.list.map((item, key) => {
-      return (
-        <TouchableOpacity
-          key={key}
-          activeOpacity={0.7}
-          onPress={() => this.selectThis(key)}
-        >
-          <View
-            style={item.selected ? styles.selectedStyle : styles.normalStyle}
+      if (item.tip !== "partid")
+        return (
+          <TouchableOpacity
+            key={key}
+            activeOpacity={0.7}
+            onPress={() => this.selectThis(key)}
           >
-            <Text
-              style={item.selected ? styles.selectedText : styles.normalText}
+            <View
+              style={item.selected ? styles.selectedStyle : styles.normalStyle}
             >
-              {item.candidat.nume} {item.candidat.prenume}
-            </Text>
-            <Text
-              style={
-                item.selected ? styles.selectedSubtitle : styles.normalSubtitle
-              }
+              <Text
+                style={item.selected ? styles.selectedText : styles.normalText}
+              >
+                {item.candidat.nume} {item.candidat.prenume}
+              </Text>
+              <Text
+                style={
+                  item.selected
+                    ? styles.selectedSubtitle
+                    : styles.normalSubtitle
+                }
+              >
+                {typeof item.candidat.partid.nume !== "undefined"
+                  ? item.candidat.partid.nume +
+                    " (" +
+                    item.candidat.partid.abreviere +
+                    ")"
+                  : "Candidat Independent"}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        );
+      else {
+        console.log(item);
+        return (
+          <TouchableOpacity
+            key={key}
+            activeOpacity={0.7}
+            onPress={() => this.selectThis(key)}
+          >
+            <View
+              style={item.selected ? styles.selectedStyle : styles.normalStyle}
             >
-              {typeof item.candidat.partid.nume !== "undefined"
-                ? item.candidat.partid.nume +
-                  " (" +
-                  item.candidat.partid.abreviere +
-                  ")"
-                : "Candidat Independent"}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      );
+              <Text
+                style={item.selected ? styles.selectedText : styles.normalText}
+              >
+                {item.candidat.nume} {item.candidat.abreviere}
+              </Text>
+
+              <View style={{ marginBottom: 20, marginTop: 20 }}>
+                {item.candidat.membrii.map((item2, key2) => {
+                  return (
+                    <View key={key2}>
+                      {console.log(item2.nume)}
+                      <Text style={{ marginLeft: 20, fontSize: 20 }}>
+                        {item2.nume} {item2.prenume}
+                      </Text>
+                    </View>
+                  );
+                })}
+              </View>
+            </View>
+          </TouchableOpacity>
+        );
+      }
     });
   }
 
@@ -119,7 +155,9 @@ class VotingScreen extends Component {
           Puteti alege o singura optiune de vot
         </Text>
 
-        {this.renderCandidati()}
+        <ScrollView style={{ marginBottom: 100 }}>
+          {this.renderCandidati()}
+        </ScrollView>
 
         <TouchableOpacity
           onPress={() => this.vote()}
@@ -154,7 +192,6 @@ const styles = {
     backgroundColor: "green",
     marginLeft: 10,
     marginRight: 10,
-    height: 120,
     marginBottom: 20,
     borderRadius: 5,
     justifyContent: "center"

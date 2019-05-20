@@ -5,6 +5,7 @@ import Campanii from "./screens/campanii";
 import Candidati from "./screens/candidati";
 import Partide from "./screens/partide";
 import Users from "./screens/users";
+import Stats from "./screens/stats";
 
 class MainContent extends Component {
   currentContent(context) {
@@ -17,6 +18,8 @@ class MainContent extends Component {
         return <Candidati />;
       case 3:
         return <Users />;
+      case 4:
+        return <Stats />;
       default:
         return <Campanii />;
     }

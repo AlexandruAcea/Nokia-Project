@@ -79,39 +79,40 @@ class HomeScreen extends Component {
 
     if (this.state.dataLoaded) {
       return this.state.referendumuri.map((item, key) => {
-        console.log(item);
+        //console.log(item);
         if (item.votStatus === "ongoing")
-          //if (item.votanti.indexOf(this.props.navigation.state.params.idUser))
-          return (
-            <TouchableOpacity
-              key={key}
-              activeOpacity={0.7}
-              onPress={() =>
-                navigate("VotOnBoarding", {
-                  ...item,
-                  isReferendum:
-                    typeof item.voturi_da !== "undefined" ? true : false,
-                  idUser: this.props.navigation.state.params.idUser
-                })
-              }
-            >
-              <View
-                style={{
-                  justifyContent: "center",
-                  height: 90,
-                  backgroundColor: "#fff",
-                  marginLeft: 20,
-                  marginRight: 20,
-                  marginBottom: 20,
-                  borderRadius: 5
-                }}
-              >
-                <Text style={{ marginLeft: 20, fontSize: 22 }}>
-                  {item.nume}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          );
+          if (item.votanti)
+            if (item.votanti.indexOf(this.props.navigation.state.params.idUser))
+              return (
+                <TouchableOpacity
+                  key={key}
+                  activeOpacity={0.7}
+                  onPress={() =>
+                    navigate("VotOnBoarding", {
+                      ...item,
+                      isReferendum:
+                        typeof item.voturi_da !== "undefined" ? true : false,
+                      idUser: this.props.navigation.state.params.idUser
+                    })
+                  }
+                >
+                  <View
+                    style={{
+                      justifyContent: "center",
+                      height: 90,
+                      backgroundColor: "#fff",
+                      marginLeft: 20,
+                      marginRight: 20,
+                      marginBottom: 20,
+                      borderRadius: 5
+                    }}
+                  >
+                    <Text style={{ marginLeft: 20, fontSize: 22 }}>
+                      {item.nume}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              );
       });
     }
   }

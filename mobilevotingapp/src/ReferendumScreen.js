@@ -9,6 +9,7 @@ class ReferendumScreen extends Component {
   };
 
   vote = () => {
+    const { navigate } = this.props.navigation;
     var vote = this.state.active === "yes" ? "votYES" : "votNO";
 
     axios({
@@ -65,6 +66,7 @@ class ReferendumScreen extends Component {
 
         <View style={{ flexDirection: "row", height: 300, marginTop: 50 }}>
           <TouchableOpacity
+            activeOpacity={0.7}
             onPress={() => this.setState({ active: "yes" })}
             style={[
               {
@@ -94,6 +96,7 @@ class ReferendumScreen extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity
+            activeOpacity={0.7}
             onPress={() => this.setState({ active: "no" })}
             style={[
               {
