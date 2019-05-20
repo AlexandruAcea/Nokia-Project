@@ -1,7 +1,14 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity, ScrollView } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  ToastAndroid
+} from "react-native";
 import { URL } from "./types";
 import axios from "axios";
+import HandleBack from "./back";
 
 class VotingScreen extends Component {
   state = {
@@ -35,7 +42,9 @@ class VotingScreen extends Component {
         id_votant: this.props.navigation.state.params.idUser
       }
     }).then(res => {
-      navigate("Home");
+      navigate("Home", {
+        token: true
+      });
     });
   }
 
@@ -50,6 +59,13 @@ class VotingScreen extends Component {
 
     this.setState({ list: newArr });
   }
+
+  onBack = () => {
+    console.log("YOU SHALL NOT GO BACK");
+    ToastAndroid.show("You shall not return ¯\\_(ツ)_/¯", ToastAndroid.SHORT);
+
+    return true;
+  };
 
   renderCandidati() {
     return this.state.list.map((item, key) => {
@@ -123,66 +139,68 @@ class VotingScreen extends Component {
 
   render() {
     return (
-      <View
-        style={{
-          paddingTop: 50,
-          flex: 1,
-          backgroundColor: "#30323F"
-        }}
-      >
-        <Text
+      <HandleBack onBack={this.onBack}>
+        <View
           style={{
-            marginLeft: 20,
-            marginRight: 20,
-            color: "white",
-            fontSize: 25,
-            marginTop: 20,
-            fontWeight: "bold"
+            paddingTop: 50,
+            flex: 1,
+            backgroundColor: "#30323F"
           }}
         >
-          Lista Optiuni
-        </Text>
-
-        <Text
-          style={{
-            marginLeft: 20,
-            marginRight: 20,
-            marginBottom: 40,
-            fontSize: 22,
-            color: "white"
-          }}
-        >
-          Puteti alege o singura optiune de vot
-        </Text>
-
-        <ScrollView style={{ marginBottom: 100 }}>
-          {this.renderCandidati()}
-        </ScrollView>
-
-        <TouchableOpacity
-          onPress={() => this.vote()}
-          activeOpacity={0.7}
-          style={{
-            position: "absolute",
-            bottom: 20,
-            width: "100%"
-          }}
-        >
-          <View
+          <Text
             style={{
-              height: 60,
               marginLeft: 20,
               marginRight: 20,
-              backgroundColor: "white",
-              borderRadius: 5,
-              justifyContent: "center",
-              alignItems: "center"
+              color: "white",
+              fontSize: 25,
+              marginTop: 20,
+              fontWeight: "bold"
             }}
           >
-            <Text style={{ fontSize: 22 }}>Confirm</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+            Lista Optiuni
+          </Text>
+
+          <Text
+            style={{
+              marginLeft: 20,
+              marginRight: 20,
+              marginBottom: 40,
+              fontSize: 22,
+              color: "white"
+            }}
+          >
+            Puteti alege o singura optiune de vot
+          </Text>
+
+          <ScrollView style={{ marginBottom: 100 }}>
+            {this.renderCandidati()}
+          </ScrollView>
+
+          <TouchableOpacity
+            onPress={() => this.vote()}
+            activeOpacity={0.7}
+            style={{
+              position: "absolute",
+              bottom: 20,
+              width: "100%"
+            }}
+          >
+            <View
+              style={{
+                height: 60,
+                marginLeft: 20,
+                marginRight: 20,
+                backgroundColor: "white",
+                borderRadius: 5,
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <Text style={{ fontSize: 22 }}>Confirm</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </HandleBack>
     );
   }
 }

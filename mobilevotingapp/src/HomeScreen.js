@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, ToastAndroid } from "react-native";
 import axios from "axios";
 import PullToRefresh from "react-native-pull-to-refresh";
 import { URL } from "./types";
+import HandleBack from "./back";
 
 class HomeScreen extends Component {
   state = {
@@ -33,6 +34,12 @@ class HomeScreen extends Component {
         })
       );
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.navigation.state.params.token) {
+      this.refresh();
+    }
+  }
 
   renderReferendumList() {
     const { navigate } = this.props.navigation;
@@ -77,9 +84,10 @@ class HomeScreen extends Component {
   renderVotes() {
     const { navigate } = this.props.navigation;
 
+    var counter = 0;
+
     if (this.state.dataLoaded) {
       return this.state.referendumuri.map((item, key) => {
-        //console.log(item);
         if (item.votStatus === "ongoing")
           if (item.votanti)
             if (item.votanti.indexOf(this.props.navigation.state.params.idUser))
@@ -96,6 +104,7 @@ class HomeScreen extends Component {
                     })
                   }
                 >
+                  {counter++}
                   <View
                     style={{
                       justifyContent: "center",
@@ -126,32 +135,44 @@ class HomeScreen extends Component {
     });
   }
 
+  onBack = () => {
+    console.log("YOU SHALL NOT GO BACK");
+    ToastAndroid.show("You shall not return ¯\\_(ツ)_/¯", ToastAndroid.SHORT);
+
+    return true;
+  };
+
   render() {
     return (
-      <View
-        style={{
-          paddingTop: 50,
-          flex: 1,
-          backgroundColor: "#30323F"
-        }}
-      >
-        <PullToRefresh style={{ flex: 1 }} onRefresh={this.refresh.bind(this)}>
-          <Text
-            style={{
-              fontWeight: "bold",
-              fontSize: 25,
-              marginLeft: 20,
-              color: "white"
-            }}
+      <HandleBack onBack={this.onBack}>
+        <View
+          style={{
+            paddingTop: 50,
+            flex: 1,
+            backgroundColor: "#30323F"
+          }}
+        >
+          <PullToRefresh
+            style={{ flex: 1 }}
+            onRefresh={this.refresh.bind(this)}
           >
-            Lista voturi active
-          </Text>
-          <View style={{ marginTop: 30 }}>
-            {this.renderReferendumList()}
-            {this.renderVotes()}
-          </View>
-        </PullToRefresh>
-      </View>
+            <Text
+              style={{
+                fontWeight: "bold",
+                fontSize: 25,
+                marginLeft: 20,
+                color: "white"
+              }}
+            >
+              Lista voturi active
+            </Text>
+            <View style={{ marginTop: 30 }}>
+              {this.renderReferendumList()}
+              {this.renderVotes()}
+            </View>
+          </PullToRefresh>
+        </View>
+      </HandleBack>
     );
   }
 }

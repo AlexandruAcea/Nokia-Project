@@ -5,7 +5,8 @@ import {
   View,
   Image,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  ToastAndroid
 } from "react-native";
 import { URL } from "./types";
 import axios from "axios";
@@ -17,20 +18,23 @@ export default class LoginScreen extends Component {
   login() {
     const { navigate } = this.props.navigation;
 
-    axios({
-      method: "post",
-      url: `http://${URL}/login`,
-      headers: {},
-      data: {
-        cnp: this.state.value1,
-        parola: this.state.value2
-      }
-    }).then(res => {
-      //console.log(res.data.user._id);
-      if (res.data.message === "LOGGED IN")
-        navigate("Home", { idUser: res.data.user._id });
-      else console.log(res.data.message);
-    });
+    if (this.state.value1 !== "" && this.state.value2 !== "")
+      axios({
+        method: "post",
+        url: `http://${URL}/login`,
+        headers: {},
+        data: {
+          cnp: this.state.value1,
+          parola: this.state.value2
+        }
+      }).then(res => {
+        //console.log(res.data.user._id);
+        if (res.data.message === "LOGGED IN")
+          navigate("Home", { idUser: res.data.user._id });
+        else
+          ToastAndroid.show("Wrong password ¯\\_(ツ)_/¯", ToastAndroid.SHORT);
+      });
+    else ToastAndroid.show("Type something yo ¯\\_(ツ)_/¯", ToastAndroid.SHORT);
   }
 
   render() {
@@ -38,7 +42,7 @@ export default class LoginScreen extends Component {
       <View
         style={{
           height: "100%",
-          backgroundColor: "#D9D7D8",
+          backgroundColor: "#30323F",
           paddingTop: 30,
           flexDirection: "column",
           alignItems: "center"
@@ -54,17 +58,17 @@ export default class LoginScreen extends Component {
           }}
         />
 
-        <Text style={{ color: "#4A5569", fontSize: 25, fontWeight: "bold" }}>
+        <Text style={{ color: "#fff", fontSize: 25, fontWeight: "bold" }}>
           Votare Online
         </Text>
-        <Text style={{ color: "#4A5569", fontSize: 20 }}>
+        <Text style={{ color: "#fff", fontSize: 20 }}>
           Biroul Electoral Central
         </Text>
 
         <View
           style={{
             height: 150,
-            width: "80%",
+            width: "90%",
             backgroundColor: "white",
             borderTopLeftRadius: 5,
             borderTopRightRadius: 5,
@@ -95,8 +99,8 @@ export default class LoginScreen extends Component {
           activeOpacity={0.7}
           style={{
             height: 70,
-            width: "80%",
-            backgroundColor: "#4A5569",
+            width: "90%",
+            backgroundColor: "#C6C6C6",
             borderBottomLeftRadius: 5,
             borderBottomRightRadius: 5,
             justifyContent: "center",
